@@ -1,0 +1,15 @@
+/* ===========================
+   GLOBAL RESET
+=========================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: #F8FAFC;
+    color: #1F2937;
+}
