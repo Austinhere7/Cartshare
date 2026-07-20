@@ -146,8 +146,12 @@ body {
 .create-room-btn:hover{
 
     background:#4338CA !important;
-
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(79,70,229,.3);
 }
+
+
+
 
 
 
@@ -174,5 +178,37 @@ body {
 .join-room-btn:hover{
 
     background:#059669 !important;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(16,185,129,.3);
+}
+
+
+/* ===========================
+   HERO FEATURES
+=========================== */
+
+.hero-features{
+    margin-top:35px;
+}
+
+.feature-item{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    margin-bottom:15px;
+    font-size:1rem;
+    font-weight:500;
+    color:#374151;
+}
+
+.feature-item i{
+    color:#10B981;
+    font-size:1.2rem;
+}
+
+.create-room-btn i,
+.join-room-btn i{
+
+    margin-right:8px;
 
 }
