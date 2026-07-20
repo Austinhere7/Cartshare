@@ -13,3 +13,64 @@ body {
     background: #F8FAFC;
     color: #1F2937;
 }
+
+/* ===========================
+   NAVBAR
+=========================== */
+
+.navbar{
+    background:#ffffff;
+    padding:18px 0;
+    box-shadow:0 2px 15px rgba(0,0,0,.05);
+}
+
+.navbar-brand{
+    font-size:2rem;
+    font-weight:700;
+}
+
+.nav-link{
+    color:#374151;
+    margin-left:20px;
+    font-weight:500;
+    transition:.3s;
+}
+
+.nav-link:hover{
+    color:#4F46E5;
+}
+
+/* ===========================
+   HERO SECTION
+=========================== */
+
+.hero-section{
+    min-height:90vh;
+    display:flex;
+    align-items:center;
+}
+
+.hero-content h1{
+
+    font-size:4rem;
+    font-weight:700;
+    line-height:1.2;
+    color:#1F2937;
+
+}
+
+.hero-content span{
+
+    color:#4F46E5;
+
+}
+
+.hero-content p{
+
+    margin-top:25px;
+    font-size:1.15rem;
+    line-height:1.8;
+    color:#6B7280;
+    max-width:550px;
+
+}
