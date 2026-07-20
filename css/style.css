@@ -74,3 +74,105 @@ body {
     max-width:550px;
 
 }
+
+/* ===========================
+   JOIN CARD
+=========================== */
+
+.join-card{
+
+    background:#fff;
+
+    padding:40px;
+
+    border-radius:20px;
+
+    box-shadow:0 20px 45px rgba(0,0,0,.08);
+
+}
+
+.join-card h3{
+
+    font-weight:700;
+
+    margin-bottom:10px;
+
+}
+
+.join-card p{
+
+    color:#6B7280;
+
+    margin-bottom:30px;
+
+}
+
+.form-control{
+
+    padding:14px;
+
+    border-radius:12px;
+
+    border:1px solid #D1D5DB;
+
+}
+
+.form-control:focus{
+
+    border-color:#4F46E5;
+
+    box-shadow:none;
+
+}
+
+.create-room-btn{
+    width:100%;
+    background-color:#4F46E5 !important;
+    color:white !important;
+    padding:14px 18px;
+    border:none;
+    border-radius:12px;
+    font-weight:600;
+    cursor:pointer;
+    transition:0.3s ease;
+}
+
+
+
+
+
+
+
+.create-room-btn:hover{
+
+    background:#4338CA !important;
+
+}
+
+
+
+
+
+
+
+.join-room-btn{
+    width:100%;
+    background-color:#10B981 !important;
+    color:white !important;
+    padding:14px 18px;
+    border:none;
+    border-radius:12px;
+    font-weight:600;
+    cursor:pointer;
+    transition:0.3s ease;
+}
+
+
+
+
+
+.join-room-btn:hover{
+
+    background:#059669 !important;
+
+}
