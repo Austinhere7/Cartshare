@@ -78,6 +78,44 @@ createRoomBtn.addEventListener("click", () => {
 // ==========================
 joinRoomBtn.addEventListener("click", () => {
 
-    console.log("Join Room Clicked");
+    const displayName = document.getElementById("displayName").value.trim();
+
+    const roomCode = document.getElementById("roomCode").value.trim().toUpperCase();
+
+    if (displayName === "" || roomCode === "") {
+
+        alert("Please fill all fields.");
+
+        return;
+
+    }
+
+    const room = JSON.parse(localStorage.getItem(roomCode));
+
+    if (!room) {
+
+        alert("Room not found!");
+
+        return;
+
+    }
+
+    if (!room.users.includes(displayName)) {
+
+        room.users.push(displayName);
+
+    }
+
+    if (!room.activity) {
+
+        room.activity = [];
+
+    }
+
+    room.activity.push(`${displayName} joined the room`);
+
+    localStorage.setItem(roomCode, JSON.stringify(room));
+
+    window.location.href = `pages/room.html?roomCode=${roomCode}`;
 
 });
