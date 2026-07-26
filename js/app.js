@@ -62,6 +62,8 @@ createRoomBtn.addEventListener("click", () => {
     // Save Room
   
     saveRoom(room);
+    // Redirect to Room Page
+    window.location.href = `pages/room.html?roomCode=${roomCode}`;
     console.log(localStorage.getItem(roomCode));
 
     // Console Output
