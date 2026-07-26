@@ -9,8 +9,22 @@ const room = JSON.parse(localStorage.getItem(roomCode));
 const roomTitle = document.getElementById("roomTitle");
 const roomCodeDisplay = document.getElementById("roomCodeDisplay");
 const hostDisplay = document.getElementById("hostDisplay");
+const memberList = document.getElementById("memberList");
 
 // Display Room Details
 roomTitle.textContent = "Shopping Room";
 roomCodeDisplay.textContent = `Room Code: ${room.roomCode}`;
 hostDisplay.textContent = `Host: ${room.host}`;
+
+// Display Members
+room.users.forEach(user => {
+
+    const listItem = document.createElement("li");
+
+    listItem.className = "list-group-item";
+
+    listItem.innerHTML = `<i class="bi bi-person-fill text-primary"></i> ${user}`;
+
+    memberList.appendChild(listItem);
+
+});
