@@ -34,19 +34,24 @@ roomCodeDisplay.textContent = `Room Code: ${room.roomCode}`;
 hostDisplay.textContent = `Host: ${room.host}`;
 
 // Display Members
-memberList.innerHTML = "";
+function displayMembers() {
 
-room.users.forEach(user => {
+    memberList.innerHTML = "";
 
-    const listItem = document.createElement("li");
+    room.users.forEach(user => {
 
-    listItem.className = "list-group-item";
+        const listItem = document.createElement("li");
 
-    listItem.innerHTML = `<i class="bi bi-person-fill text-primary"></i> ${user}`;
+        listItem.className = "list-group-item";
 
-    memberList.appendChild(listItem);
+        listItem.innerHTML =
+            `<i class="bi bi-person-fill text-primary"></i> ${user}`;
 
-});
+        memberList.appendChild(listItem);
+
+    });
+
+}
 
 // Display Shopping Cart
 function displayCart() {
@@ -69,7 +74,9 @@ function displayCart() {
             <td>₹${item.price}</td>
             <td>₹${total}</td>
             <td>
-                <button class="btn btn-sm btn-danger delete-btn" data-index="${index}">
+                <button
+                    class="btn btn-sm btn-danger delete-btn"
+                    data-index="${index}">
                     <i class="bi bi-trash"></i>
                 </button>
             </td>
@@ -82,9 +89,7 @@ function displayCart() {
     document.getElementById("grandTotal").textContent = `₹${grandTotal}`;
 
     // Delete Item
-    const deleteButtons = document.querySelectorAll(".delete-btn");
-
-    deleteButtons.forEach((button) => {
+    document.querySelectorAll(".delete-btn").forEach(button => {
 
         button.addEventListener("click", () => {
 
@@ -109,12 +114,12 @@ function displayCart() {
 
 }
 
-// Display Activity Log
+// Display Activity
 function displayActivity() {
 
     activityLog.innerHTML = "";
 
-    room.activity.forEach((activity) => {
+    room.activity.forEach(activity => {
 
         const log = document.createElement("div");
 
@@ -129,6 +134,7 @@ function displayActivity() {
 }
 
 // Initial Load
+displayMembers();
 displayCart();
 displayActivity();
 
@@ -139,8 +145,21 @@ addItemBtn.addEventListener("click", () => {
     const quantity = itemQuantity.value.trim();
     const price = itemPrice.value.trim();
 
-    if (name === "" || quantity === "" || price === "") {
-        alert("Please fill all fields.");
+    if (name === "") {
+        alert("Please enter an item name.");
+        itemName.focus();
+        return;
+    }
+
+    if (quantity === "" || Number(quantity) <= 0) {
+        alert("Quantity must be greater than 0.");
+        itemQuantity.focus();
+        return;
+    }
+
+    if (price === "" || Number(price) <= 0) {
+        alert("Price must be greater than 0.");
+        itemPrice.focus();
         return;
     }
 
@@ -167,7 +186,7 @@ addItemBtn.addEventListener("click", () => {
 
 });
 
-// Real-time Sync
+// Storage Sync
 window.addEventListener("storage", (event) => {
 
     if (event.key === roomCode) {
@@ -178,22 +197,7 @@ window.addEventListener("storage", (event) => {
         room.cart = updatedRoom.cart;
         room.activity = updatedRoom.activity;
 
-        // Refresh Members
-        memberList.innerHTML = "";
-
-        room.users.forEach(user => {
-
-            const listItem = document.createElement("li");
-
-            listItem.className = "list-group-item";
-
-            listItem.innerHTML =
-                `<i class="bi bi-person-fill text-primary"></i> ${user}`;
-
-            memberList.appendChild(listItem);
-
-        });
-
+        displayMembers();
         displayCart();
         displayActivity();
 
@@ -201,31 +205,23 @@ window.addEventListener("storage", (event) => {
 
 });
 
+// Receipt
 receiptBtn.addEventListener("click", () => {
 
-    window.location.href =
-        `receipt.html?roomCode=${roomCode}`;
+    window.location.href = `receipt.html?roomCode=${roomCode}`;
 
 });
 
+// Empty Cart
 emptyCartBtn.addEventListener("click", () => {
 
     if (room.cart.length === 0) {
-
         alert("Cart is already empty.");
-
         return;
-
     }
 
-    const confirmClear = confirm(
-        "Are you sure you want to empty the cart?"
-    );
-
-    if (!confirmClear) {
-
+    if (!confirm("Are you sure you want to empty the cart?")) {
         return;
-
     }
 
     room.cart = [];
