@@ -26,6 +26,7 @@ const addItemBtn = document.getElementById("addItemBtn");
 const cartItems = document.getElementById("cartItems");
 const activityLog = document.getElementById("activityLog");
 const receiptBtn = document.getElementById("receiptBtn");
+const emptyCartBtn = document.getElementById("emptyCartBtn");
 
 // Display Room Details
 roomTitle.textContent = "Shopping Room";
@@ -204,5 +205,38 @@ receiptBtn.addEventListener("click", () => {
 
     window.location.href =
         `receipt.html?roomCode=${roomCode}`;
+
+});
+
+emptyCartBtn.addEventListener("click", () => {
+
+    if (room.cart.length === 0) {
+
+        alert("Cart is already empty.");
+
+        return;
+
+    }
+
+    const confirmClear = confirm(
+        "Are you sure you want to empty the cart?"
+    );
+
+    if (!confirmClear) {
+
+        return;
+
+    }
+
+    room.cart = [];
+
+    room.activity.push(
+        `${currentUser} cleared the shopping cart`
+    );
+
+    localStorage.setItem(roomCode, JSON.stringify(room));
+
+    displayCart();
+    displayActivity();
 
 });
