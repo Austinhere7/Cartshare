@@ -53,13 +53,11 @@
 
     </div>
 
-    <!-- Main Dashboard -->
     <div class="row g-4">
 
-        <!-- Left Column -->
+        <!-- Members -->
         <div class="col-lg-4">
 
-            <!-- Members -->
             <div class="card shadow-sm border-0 mb-4">
 
                 <div class="card-body">
@@ -69,8 +67,7 @@
                         Members
                     </h5>
 
-                    <ul id="memberList" class="list-group">
-                    </ul>
+                    <ul id="memberList" class="list-group"></ul>
 
                 </div>
 
@@ -86,52 +83,26 @@
 
                 <div class="card-body">
 
-                    <h5 class="mb-4">
-                        Add Shopping Item
-                    </h5>
+                    <h5 class="mb-4">Add Shopping Item</h5>
 
                     <div class="row g-3">
 
                         <div class="col-md-5">
-
-                            <input
-                                type="text"
-                                id="itemName"
-                                class="form-control"
-                                placeholder="Item Name">
-
+                            <input type="text" id="itemName" class="form-control" placeholder="Item Name">
                         </div>
 
                         <div class="col-md-3">
-
-                            <input
-                                type="number"
-                                id="itemQuantity"
-                                class="form-control"
-                                placeholder="Qty">
-
+                            <input type="number" id="itemQuantity" class="form-control" placeholder="Qty">
                         </div>
 
                         <div class="col-md-2">
-
-                            <input
-                                type="number"
-                                id="itemPrice"
-                                class="form-control"
-                                placeholder="Price">
-
+                            <input type="number" id="itemPrice" class="form-control" placeholder="Price">
                         </div>
 
                         <div class="col-md-2">
-
-                            <button
-                                id="addItemBtn"
-                                class="btn btn-primary w-100">
-
+                            <button id="addItemBtn" class="btn btn-primary w-100">
                                 Add
-
                             </button>
-
                         </div>
 
                     </div>
@@ -145,44 +116,43 @@
 
                 <div class="card-body">
 
-                    <h5>
-                        Shopping Cart
-                    </h5>
+                    <h5>Shopping Cart</h5>
 
                     <table class="table table-hover align-middle">
 
-    <thead>
+                        <thead>
+                            <tr>
+                                <th>Item</th>
+                                <th>Qty</th>
+                                <th>Price</th>
+                                <th>Total</th>
+                                <th></th>
+                            </tr>
+                        </thead>
 
-        <tr>
+                        <tbody id="cartItems"></tbody>
 
-            <th>Item</th>
+                    </table>
 
-            <th>Qty</th>
+                    <h5 class="text-end mt-3">
+                        Grand Total:
+                        <span id="grandTotal">₹0</span>
+                    </h5>
 
-            <th>Price</th>
+                    <!-- Receipt Button -->
+                    <div class="text-end mt-3">
 
-            <th>Total</th>
+                        <button
+                            id="receiptBtn"
+                            type="button"
+                            class="btn btn-success">
 
-            <th></th>
+                            <i class="bi bi-receipt"></i>
+                            View Receipt
 
-        </tr>
+                        </button>
 
-    </thead>
-
-    <tbody id="cartItems">
-
-    </tbody>
-
-</table>
-
-<h5 class="text-end mt-3">
-
-    Grand Total:
-    <span id="grandTotal">₹0</span>
-
-</h5>
-
-
+                    </div>
 
                 </div>
 
@@ -193,13 +163,9 @@
 
                 <div class="card-body">
 
-                    <h5>
-                        Activity Log
-                    </h5>
+                    <h5>Activity Log</h5>
 
-                    <div id="activityLog">
-
-                    </div>
+                    <div id="activityLog"></div>
 
                 </div>
 

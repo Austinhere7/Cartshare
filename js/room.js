@@ -25,6 +25,7 @@ const addItemBtn = document.getElementById("addItemBtn");
 
 const cartItems = document.getElementById("cartItems");
 const activityLog = document.getElementById("activityLog");
+const receiptBtn = document.getElementById("receiptBtn");
 
 // Display Room Details
 roomTitle.textContent = "Shopping Room";
@@ -196,5 +197,12 @@ window.addEventListener("storage", (event) => {
         displayActivity();
 
     }
+
+});
+
+receiptBtn.addEventListener("click", () => {
+
+    window.location.href =
+        `receipt.html?roomCode=${roomCode}`;
 
 });
