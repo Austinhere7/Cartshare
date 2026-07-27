@@ -7,7 +7,6 @@ const roomCodeInput = document.getElementById("roomCode");
 const createRoomBtn = document.getElementById("createRoomBtn");
 const joinRoomBtn = document.getElementById("joinRoomBtn");
 
-
 // ==========================
 // Generate Room Code
 // ==========================
@@ -16,41 +15,32 @@ function generateRoomCode() {
     return `HOSTEL${randomNumber}`;
 }
 
-
 // ==========================
 // Save Room to Local Storage
 // ==========================
 function saveRoom(room) {
     localStorage.setItem(room.roomCode, JSON.stringify(room));
 
-  
-
     console.log("Saved Key:", room.roomCode);
     console.log("Saved Value:", localStorage.getItem(room.roomCode));
 }
-
 
 // ==========================
 // Create Room Button
 // ==========================
 createRoomBtn.addEventListener("click", () => {
 
-    // Get Display Name
     const displayName = displayNameInput.value.trim();
 
-    // Validate Display Name
     if (displayName === "") {
         alert("Please enter your display name.");
         return;
     }
 
-    // Generate Room Code
     const roomCode = generateRoomCode();
 
-    // Display Room Code
     roomCodeInput.value = roomCode;
 
-    // Create Room Object
     const room = {
         roomCode: roomCode,
         host: displayName,
@@ -59,28 +49,26 @@ createRoomBtn.addEventListener("click", () => {
         activity: []
     };
 
-    // Save Room
-  
     saveRoom(room);
-    // Redirect to Room Page
-    window.location.href = `pages/room.html?roomCode=${roomCode}`;
-    console.log(localStorage.getItem(roomCode));
 
-    // Console Output
+    // IMPORTANT
+    sessionStorage.setItem("currentUser", displayName);
+
     console.log("Room Created Successfully");
     console.log(room);
 
-});
+    window.location.href = `pages/room.html?roomCode=${roomCode}`;
 
+});
 
 // ==========================
 // Join Room Button
 // ==========================
 joinRoomBtn.addEventListener("click", () => {
 
-    const displayName = document.getElementById("displayName").value.trim();
+    const displayName = displayNameInput.value.trim();
 
-    const roomCode = document.getElementById("roomCode").value.trim().toUpperCase();
+    const roomCode = roomCodeInput.value.trim().toUpperCase();
 
     if (displayName === "" || roomCode === "") {
 
@@ -116,6 +104,10 @@ joinRoomBtn.addEventListener("click", () => {
 
     localStorage.setItem(roomCode, JSON.stringify(room));
 
-    window.location.href = `pages/room.html?roomCode=${roomCode}`;
+    // IMPORTANT
+    sessionStorage.setItem("currentUser", displayName);
+
+   window.location.href =
+    `pages/room.html?roomCode=${roomCode}&user=${encodeURIComponent(displayName)}`;
 
 });

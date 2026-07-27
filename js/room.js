@@ -23,7 +23,7 @@ if (!room.activity) {
 }
 
 const currentUser =
-    sessionStorage.getItem("currentUser") || room.host;
+    params.get("user") || room.host;
 
 // Select Elements
 const roomTitle = document.getElementById("roomTitle");
@@ -70,6 +70,28 @@ function displayMembers() {
 function displayCart() {
 
     cartItems.innerHTML = "";
+
+    if (room.cart.length === 0) {
+
+    cartItems.innerHTML = `
+        <tr>
+            <td colspan="5" class="text-center text-muted py-5">
+
+                <i class="bi bi-cart-x fs-1 d-block mb-3"></i>
+
+                <h5>Your shopping cart is empty</h5>
+
+                <small>Add an item to get started.</small>
+
+            </td>
+        </tr>
+    `;
+
+    document.getElementById("grandTotal").textContent = "₹0";
+
+    return;
+
+}
 
     let grandTotal = 0;
 
