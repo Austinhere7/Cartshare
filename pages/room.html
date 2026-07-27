@@ -18,6 +18,7 @@
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="../css/room.css">
+
 </head>
 
 <body>
@@ -25,29 +26,35 @@
 <div class="container py-5">
 
     <!-- Header -->
-    <div class="d-flex justify-content-between align-items-center mb-5">
+    <div class="d-flex flex-wrap justify-content-between align-items-center mb-5">
 
-        <h2 class="fw-bold text-primary">
+        <h2 class="fw-bold text-primary mb-3 mb-md-0">
             <i class="bi bi-cart3"></i>
             CartShare
         </h2>
 
-        <span class="badge bg-success fs-6">
+        <span class="badge bg-success fs-6 px-3 py-2">
+            <i class="bi bi-wifi"></i>
             Connected
         </span>
 
     </div>
 
     <!-- Room Details -->
-    <div class="card shadow-sm border-0 mb-4">
+    <div class="card shadow-card border-0 mb-4">
 
-        <div class="card-body">
+        <div class="card-body p-4">
 
-            <h3 id="roomTitle"></h3>
+            <h4 class="fw-bold mb-3">
+                <i class="bi bi-house-door-fill text-primary"></i>
+                Room Details
+            </h4>
 
-            <p id="roomCodeDisplay" class="mb-2"></p>
+            <h5 id="roomTitle" class="fw-bold mb-3"></h5>
 
-            <p id="hostDisplay" class="mb-0"></p>
+            <p id="roomCodeDisplay" class="mb-2 text-secondary"></p>
+
+            <p id="hostDisplay" class="mb-0 text-secondary"></p>
 
         </div>
 
@@ -58,16 +65,19 @@
         <!-- Members -->
         <div class="col-lg-4">
 
-            <div class="card shadow-sm border-0 mb-4">
+            <div class="card shadow-card border-0 h-100">
 
-                <div class="card-body">
+                <div class="card-body p-4">
 
-                    <h5 class="mb-3">
-                        <i class="bi bi-people-fill"></i>
+                    <h4 class="fw-bold mb-3">
+                        <i class="bi bi-people-fill text-primary"></i>
                         Members
-                    </h5>
+                    </h4>
 
-                    <ul id="memberList" class="list-group"></ul>
+                    <ul
+                        id="memberList"
+                        class="list-group list-group-flush">
+                    </ul>
 
                 </div>
 
@@ -79,30 +89,58 @@
         <div class="col-lg-8">
 
             <!-- Add Shopping Item -->
-            <div class="card shadow-sm border-0 mb-4">
+            <div class="card shadow-card border-0 mb-4">
 
-                <div class="card-body">
+                <div class="card-body p-4">
 
-                    <h5 class="mb-4">Add Shopping Item</h5>
+                    <h4 class="fw-bold mb-4">
+                        <i class="bi bi-plus-circle-fill text-success"></i>
+                        Add Shopping Item
+                    </h4>
 
                     <div class="row g-3">
 
                         <div class="col-md-5">
-                            <input type="text" id="itemName" class="form-control" placeholder="Item Name">
+
+                            <input
+                                type="text"
+                                id="itemName"
+                                class="form-control"
+                                placeholder="Item Name">
+
                         </div>
 
                         <div class="col-md-3">
-                            <input type="number" id="itemQuantity" class="form-control" placeholder="Qty">
+
+                            <input
+                                type="number"
+                                id="itemQuantity"
+                                class="form-control"
+                                placeholder="Quantity">
+
                         </div>
 
                         <div class="col-md-2">
-                            <input type="number" id="itemPrice" class="form-control" placeholder="Price">
+
+                            <input
+                                type="number"
+                                id="itemPrice"
+                                class="form-control"
+                                placeholder="Price">
+
                         </div>
 
                         <div class="col-md-2">
-                            <button id="addItemBtn" class="btn btn-primary w-100">
+
+                            <button
+                                id="addItemBtn"
+                                class="btn btn-primary w-100">
+
+                                <i class="bi bi-plus-lg"></i>
                                 Add
+
                             </button>
+
                         </div>
 
                     </div>
@@ -112,68 +150,89 @@
             </div>
 
             <!-- Shopping Cart -->
-            <div class="card shadow-sm border-0 mb-4">
+            <div class="card shadow-card border-0 mb-4">
 
-                <div class="card-body">
+                <div class="card-body p-4">
 
-                    <h5>Shopping Cart</h5>
+                    <h4 class="fw-bold mb-4">
+                        <i class="bi bi-cart-fill text-success"></i>
+                        Shopping Cart
+                    </h4>
 
-                    <table class="table table-hover align-middle">
+                    <div class="table-responsive">
 
-                        <thead>
-                            <tr>
-                                <th>Item</th>
-                                <th>Qty</th>
-                                <th>Price</th>
-                                <th>Total</th>
-                                <th></th>
-                            </tr>
-                        </thead>
+                        <table class="table table-hover align-middle">
 
-                        <tbody id="cartItems"></tbody>
+                            <thead>
 
-                    </table>
+                                <tr>
 
-                    <h5 class="text-end mt-3">
-                        Grand Total:
+                                    <th>Item</th>
+                                    <th>Qty</th>
+                                    <th>Price</th>
+                                    <th>Total</th>
+                                    <th></th>
+
+                                </tr>
+
+                            </thead>
+
+                            <tbody id="cartItems"></tbody>
+
+                        </table>
+
+                    </div>
+
+                    <h4 class="fw-bold text-end mt-4 text-success">
+
+                        Grand Total :
                         <span id="grandTotal">₹0</span>
-                    </h5>
 
-                    <!-- Receipt Button -->
-                    <div class="d-flex justify-content-end gap-2 mt-3">
+                    </h4>
 
-    <button
-        id="emptyCartBtn"
-        class="btn btn-danger">
+                    <div class="d-flex flex-wrap justify-content-end gap-3 mt-4">
 
-        <i class="bi bi-trash3-fill"></i>
-        Empty Cart
+                        <button
+                            id="emptyCartBtn"
+                            class="btn btn-danger">
 
-    </button>
+                            <i class="bi bi-trash3-fill"></i>
+                            Empty Cart
 
-    <button
-        id="receiptBtn"
-        class="btn btn-success">
+                        </button>
 
-        <i class="bi bi-receipt"></i>
-        View Receipt
+                        <button
+                            id="receiptBtn"
+                            class="btn btn-success">
 
-    </button>
+                            <i class="bi bi-receipt"></i>
+                            View Receipt
 
-</div>
+                        </button>
+
+                    </div>
 
                 </div>
 
             </div>
 
             <!-- Activity Log -->
-            <div class="card shadow-sm border-0">
+            <div class="card shadow-card border-0">
 
-                <div class="card-body">
+                <div class="card-body p-4">
 
-                    <h5>Activity Log</h5>
+                    <h4 class="fw-bold mb-4">
 
-                    <div id="activityLog"></div>
+                        <i class="bi bi-clock-history text-warning"></i>
+                        Activity Timeline
+
+                    </h4>
+
+                    <div
+                        id="activityLog"
+                        class="d-flex flex-column gap-2">
+
+                    </div>
 
                 </div>
 
@@ -192,4 +251,5 @@
 <script src="../js/room.js"></script>
 
 </body>
+
 </html>

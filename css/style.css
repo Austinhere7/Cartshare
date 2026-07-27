@@ -1,17 +1,41 @@
+:root {
+    --primary: #2563eb;
+    --primary-dark: #1d4ed8;
+    --success: #16a34a;
+    --danger: #dc2626;
+    --warning: #f59e0b;
+
+    --background: #f4f7fb;
+    --card-bg: #ffffff;
+
+    --text-dark: #1e293b;
+    --text-light: #64748b;
+
+    --border: #e2e8f0;
+
+    --shadow: 0 8px 20px rgba(0,0,0,.08);
+    --shadow-hover: 0 18px 40px rgba(0,0,0,.12);
+}
+
 /* ===========================
    GLOBAL RESET
 =========================== */
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
 }
 
-body {
-    font-family: 'Poppins', sans-serif;
-    background: #F8FAFC;
-    color: #1F2937;
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    background:var(--background);
+    color:var(--text-dark);
+    font-family:"Segoe UI",sans-serif;
+    overflow-x:hidden;
 }
 
 /* ===========================
@@ -27,6 +51,7 @@ body {
 .navbar-brand{
     font-size:2rem;
     font-weight:700;
+    color:var(--primary) !important;
 }
 
 .nav-link{
@@ -37,7 +62,7 @@ body {
 }
 
 .nav-link:hover{
-    color:#4F46E5;
+    color:var(--primary);
 }
 
 /* ===========================
@@ -51,43 +76,47 @@ body {
 }
 
 .hero-content h1{
-
     font-size:4rem;
     font-weight:700;
     line-height:1.2;
     color:#1F2937;
-
 }
 
 .hero-content span{
-
-    color:#4F46E5;
-
+    color:var(--primary);
 }
 
 .hero-content p{
-
     margin-top:25px;
     font-size:1.15rem;
     line-height:1.8;
     color:#6B7280;
     max-width:550px;
-
 }
 
 /* ===========================
-   JOIN CARD
+   CARD
 =========================== */
 
 .join-card{
 
-    background:#fff;
+    background:var(--card-bg);
 
     padding:40px;
 
     border-radius:20px;
 
-    box-shadow:0 20px 45px rgba(0,0,0,.08);
+    box-shadow:var(--shadow);
+
+    transition:.35s;
+
+}
+
+.join-card:hover{
+
+    transform:translateY(-6px);
+
+    box-shadow:var(--shadow-hover);
 
 }
 
@@ -107,6 +136,10 @@ body {
 
 }
 
+/* ===========================
+   INPUTS
+=========================== */
+
 .form-control{
 
     padding:14px;
@@ -115,100 +148,310 @@ body {
 
     border:1px solid #D1D5DB;
 
+    transition:.3s;
+
 }
 
 .form-control:focus{
 
-    border-color:#4F46E5;
+    border-color:var(--primary);
 
-    box-shadow:none;
+    box-shadow:0 0 0 4px rgba(37,99,235,.12);
+
+}
+
+/* ===========================
+   BUTTONS
+=========================== */
+
+.btn{
+
+    border-radius:12px;
+
+    font-weight:600;
+
+    transition:.3s;
+
+}
+
+.btn:hover{
+
+    transform:translateY(-2px);
 
 }
 
 .create-room-btn{
+
     width:100%;
-    background-color:#4F46E5 !important;
+
+    background:var(--primary) !important;
+
     color:white !important;
+
     padding:14px 18px;
+
     border:none;
+
     border-radius:12px;
+
     font-weight:600;
-    cursor:pointer;
-    transition:0.3s ease;
+
+    transition:.3s;
+
 }
-
-
-
-
-
-
 
 .create-room-btn:hover{
 
-    background:#4338CA !important;
-    transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(79,70,229,.3);
+    background:var(--primary-dark) !important;
+
+    transform:translateY(-3px);
+
+    box-shadow:0 12px 28px rgba(37,99,235,.30);
+
 }
-
-
-
-
-
-
-
-
-
 
 .join-room-btn{
+
     width:100%;
-    background-color:#10B981 !important;
+
+    background:var(--success) !important;
+
     color:white !important;
+
     padding:14px 18px;
+
     border:none;
+
     border-radius:12px;
+
     font-weight:600;
-    cursor:pointer;
-    transition:0.3s ease;
+
+    transition:.3s;
+
 }
-
-
-
-
 
 .join-room-btn:hover{
 
-    background:#059669 !important;
-    transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(16,185,129,.3);
-}
+    background:#15803d !important;
 
+    transform:translateY(-3px);
 
-/* ===========================
-   HERO FEATURES
-=========================== */
+    box-shadow:0 12px 28px rgba(22,163,74,.30);
 
-.hero-features{
-    margin-top:35px;
-}
-
-.feature-item{
-    display:flex;
-    align-items:center;
-    gap:12px;
-    margin-bottom:15px;
-    font-size:1rem;
-    font-weight:500;
-    color:#374151;
-}
-
-.feature-item i{
-    color:#10B981;
-    font-size:1.2rem;
 }
 
 .create-room-btn i,
 .join-room-btn i{
 
     margin-right:8px;
+
+}
+
+/* ===========================
+   HERO FEATURES
+=========================== */
+
+.hero-features{
+
+    margin-top:35px;
+
+}
+
+.feature-item{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    margin-bottom:15px;
+
+    font-size:1rem;
+
+    font-weight:500;
+
+    color:#374151;
+
+}
+
+.feature-item i{
+
+    color:var(--success);
+
+    font-size:1.2rem;
+
+}
+
+/* ===========================
+   TABLE
+=========================== */
+
+.table{
+
+    background:white;
+
+    border-radius:15px;
+
+    overflow:hidden;
+
+    box-shadow:var(--shadow);
+
+}
+
+.table thead{
+
+    background:var(--primary);
+
+    color:white;
+
+}
+
+.table th{
+
+    border:none;
+
+    padding:16px;
+
+}
+
+.table td{
+
+    vertical-align:middle;
+
+    padding:15px;
+
+}
+
+.table tbody tr{
+
+    transition:.25s;
+
+}
+
+.table tbody tr:hover{
+
+    background:#F8FAFC;
+
+}
+
+/* ===========================
+   LIST GROUP
+=========================== */
+
+.list-group-item{
+
+    border:none;
+
+    border-bottom:1px solid var(--border);
+
+    padding:14px;
+
+}
+
+.list-group-item:last-child{
+
+    border-bottom:none;
+
+}
+
+/* ===========================
+   BADGES
+=========================== */
+
+.badge{
+
+    border-radius:50px;
+
+    padding:8px 14px;
+
+}
+
+/* ===========================
+   SHADOW UTILITIES
+=========================== */
+
+.shadow-card{
+
+    box-shadow:var(--shadow);
+
+    border-radius:16px;
+
+}
+
+/* ===========================
+   ANIMATIONS
+=========================== */
+
+button,
+.card,
+.table,
+.list-group-item{
+
+    transition:.3s;
+
+}
+
+/* ===========================
+   RESPONSIVE
+=========================== */
+
+@media(max-width:992px){
+
+.hero-content{
+
+    text-align:center;
+
+    margin-bottom:40px;
+
+}
+
+.hero-content h1{
+
+    font-size:3rem;
+
+}
+
+.hero-content p{
+
+    margin:auto;
+
+    margin-top:20px;
+
+}
+
+.hero-features{
+
+    justify-content:center;
+
+}
+
+}
+
+@media(max-width:768px){
+
+.hero-section{
+
+    padding:40px 0;
+
+}
+
+.hero-content h1{
+
+    font-size:2.3rem;
+
+}
+
+.join-card{
+
+    padding:30px;
+
+}
+
+.navbar-brand{
+
+    font-size:1.6rem;
+
+}
 
 }

@@ -2,15 +2,28 @@
 const params = new URLSearchParams(window.location.search);
 const roomCode = params.get("roomCode");
 
-// Get Room Data from Local Storage
+// Redirect if room code is missing
+if (!roomCode) {
+    alert("Invalid room link.");
+    window.location.href = "../index.html";
+}
+
+// Get Room Data
 const room = JSON.parse(localStorage.getItem(roomCode));
+
+// Redirect if room doesn't exist
+if (!room) {
+    alert("Room not found.");
+    window.location.href = "../index.html";
+}
 
 // Ensure activity array exists
 if (!room.activity) {
     room.activity = [];
 }
 
-const currentUser = room.host;
+const currentUser =
+    sessionStorage.getItem("currentUser") || room.host;
 
 // Select Elements
 const roomTitle = document.getElementById("roomTitle");
