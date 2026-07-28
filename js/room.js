@@ -27,8 +27,7 @@ if (!room.activity) {
 }
 
 // Current User
-const currentUser =
-    params.get("user") || room.host;
+const currentUser = params.get("user") || room.host;
 
 // ==========================
 // Select Elements
@@ -47,7 +46,7 @@ const cartItems = document.getElementById("cartItems");
 const activityLog = document.getElementById("activityLog");
 
 const receiptBtn = document.getElementById("receiptBtn");
-const emptyCartBtn = document.getElementById("emptyCartBtn")
+const emptyCartBtn = document.getElementById("emptyCartBtn");
 
 const memberCount = document.getElementById("memberCount");
 const itemCount = document.getElementById("itemCount");
@@ -73,13 +72,17 @@ function displayMembers() {
 
         listItem.className = "list-group-item";
 
-        listItem.innerHTML =
-            `<i class="bi bi-person-fill text-primary"></i> ${user}`;
+        listItem.innerHTML = `
+            <i class="bi bi-person-fill text-primary"></i>
+            ${user}
+        `;
 
         memberList.appendChild(listItem);
 
     });
-updateDashboard();
+
+    updateDashboard();
+
 }
 
 // ==========================
@@ -87,13 +90,10 @@ updateDashboard();
 // ==========================
 function updateDashboard() {
 
-    // Members
     memberCount.textContent = room.users.length;
 
-    // Items
     itemCount.textContent = room.cart.length;
 
-    // Grand Total
     let total = 0;
 
     room.cart.forEach(item => {
@@ -105,6 +105,12 @@ function updateDashboard() {
     dashboardTotal.textContent = `₹${total}`;
 
 }
+
+// ==========================
+// Display Shopping Cart
+// ==========================
+
+
 // ==========================
 // Display Shopping Cart
 // ==========================
@@ -138,26 +144,63 @@ function displayCart() {
 
     let grandTotal = 0;
 
-    // Display latest items first
+    // Latest items first
     [...room.cart].reverse().forEach((item, index) => {
 
         const total = item.quantity * item.price;
 
         grandTotal += total;
 
-        // Convert reversed index to original index
+        // Convert reverse index back to original index
         const originalIndex = room.cart.length - 1 - index;
 
         const row = document.createElement("tr");
 
         row.innerHTML = `
-            <td>${item.name}</td>
 
-            <td>${item.quantity}</td>
+            <td>
 
-            <td>₹${item.price}</td>
+                <strong>${item.name}</strong>
 
-            <td>₹${total}</td>
+                <br>
+
+                <small class="text-muted">
+
+                    <i class="bi bi-person-fill"></i>
+
+                    ${item.addedBy || "Unknown"}
+
+                </small>
+
+                <br>
+
+                <small class="text-muted">
+
+                    <i class="bi bi-clock"></i>
+
+                    ${item.addedAt || "-"}
+
+                </small>
+
+            </td>
+
+            <td>
+
+                ${item.quantity}
+
+            </td>
+
+            <td>
+
+                ₹${item.price}
+
+            </td>
+
+            <td>
+
+                ₹${total}
+
+            </td>
 
             <td>
 
@@ -170,6 +213,7 @@ function displayCart() {
                 </button>
 
             </td>
+
         `;
 
         cartItems.appendChild(row);
@@ -177,7 +221,9 @@ function displayCart() {
     });
 
     document.getElementById("grandTotal").textContent = `₹${grandTotal}`;
-updateDashboard();
+
+    updateDashboard();
+
     // Delete Item
     document.querySelectorAll(".delete-btn").forEach(button => {
 
@@ -220,9 +266,12 @@ function displayActivity() {
 
         const log = document.createElement("div");
 
-        log.className = "border rounded p-2 mb-2";
+        log.className = "border rounded p-3 bg-light";
 
-        log.textContent = activity;
+        log.innerHTML = `
+            <i class="bi bi-activity text-success me-2"></i>
+            ${activity}
+        `;
 
         activityLog.appendChild(log);
 
@@ -249,9 +298,7 @@ addItemBtn.addEventListener("click", () => {
     if (name === "") {
 
         alert("Please enter an item name.");
-
         itemName.focus();
-
         return;
 
     }
@@ -259,9 +306,7 @@ addItemBtn.addEventListener("click", () => {
     if (quantity === "" || Number(quantity) <= 0) {
 
         alert("Quantity must be greater than 0.");
-
         itemQuantity.focus();
-
         return;
 
     }
@@ -269,9 +314,7 @@ addItemBtn.addEventListener("click", () => {
     if (price === "" || Number(price) <= 0) {
 
         alert("Price must be greater than 0.");
-
         itemPrice.focus();
-
         return;
 
     }
@@ -279,10 +322,12 @@ addItemBtn.addEventListener("click", () => {
     const item = {
 
         name: name,
-
         quantity: Number(quantity),
+        price: Number(price),
 
-        price: Number(price)
+        addedBy: currentUser,
+
+        addedAt: new Date().toLocaleString()
 
     };
 
@@ -304,8 +349,9 @@ addItemBtn.addEventListener("click", () => {
     itemQuantity.value = "";
     itemPrice.value = "";
 
-});
+    itemName.focus();
 
+});
 
 // ==========================
 // Storage Sync
@@ -316,9 +362,7 @@ window.addEventListener("storage", (event) => {
 
         const updatedRoom = JSON.parse(event.newValue);
 
-        if (!updatedRoom) {
-            return;
-        }
+        if (!updatedRoom) return;
 
         room.users = updatedRoom.users;
         room.cart = updatedRoom.cart;
@@ -349,7 +393,6 @@ emptyCartBtn.addEventListener("click", () => {
     if (room.cart.length === 0) {
 
         alert("Cart is already empty.");
-
         return;
 
     }
