@@ -47,7 +47,11 @@ const cartItems = document.getElementById("cartItems");
 const activityLog = document.getElementById("activityLog");
 
 const receiptBtn = document.getElementById("receiptBtn");
-const emptyCartBtn = document.getElementById("emptyCartBtn");
+const emptyCartBtn = document.getElementById("emptyCartBtn")
+
+const memberCount = document.getElementById("memberCount");
+const itemCount = document.getElementById("itemCount");
+const dashboardTotal = document.getElementById("dashboardTotal");
 
 // ==========================
 // Display Room Details
@@ -75,9 +79,32 @@ function displayMembers() {
         memberList.appendChild(listItem);
 
     });
-
+updateDashboard();
 }
 
+// ==========================
+// Dashboard Statistics
+// ==========================
+function updateDashboard() {
+
+    // Members
+    memberCount.textContent = room.users.length;
+
+    // Items
+    itemCount.textContent = room.cart.length;
+
+    // Grand Total
+    let total = 0;
+
+    room.cart.forEach(item => {
+
+        total += item.quantity * item.price;
+
+    });
+
+    dashboardTotal.textContent = `₹${total}`;
+
+}
 // ==========================
 // Display Shopping Cart
 // ==========================
@@ -102,6 +129,8 @@ function displayCart() {
         `;
 
         document.getElementById("grandTotal").textContent = "₹0";
+
+        updateDashboard();
 
         return;
 
@@ -148,7 +177,7 @@ function displayCart() {
     });
 
     document.getElementById("grandTotal").textContent = `₹${grandTotal}`;
-
+updateDashboard();
     // Delete Item
     document.querySelectorAll(".delete-btn").forEach(button => {
 

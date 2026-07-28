@@ -57,7 +57,8 @@ createRoomBtn.addEventListener("click", () => {
     console.log("Room Created Successfully");
     console.log(room);
 
-    window.location.href = `pages/room.html?roomCode=${roomCode}`;
+    window.location.href =
+`pages/room.html?roomCode=${roomCode}&user=${encodeURIComponent(displayName)}`;
 
 });
 
@@ -107,7 +108,7 @@ joinRoomBtn.addEventListener("click", () => {
     // IMPORTANT
     sessionStorage.setItem("currentUser", displayName);
 
-   window.location.href =
-    `pages/room.html?roomCode=${roomCode}&user=${encodeURIComponent(displayName)}`;
+window.location.href =
+`pages/room.html?roomCode=${roomCode}&user=${encodeURIComponent(displayName)}`;
 
 });

@@ -18,7 +18,6 @@
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="../css/room.css">
-
 </head>
 
 <body>
@@ -40,21 +39,94 @@
 
     </div>
 
-    <div class="card border-0 shadow-card mb-4 bg-primary text-white">
+    <!-- Welcome Banner -->
+    <div class="card welcome-card border-0 shadow-lg mb-4">
 
-    <div class="card-body py-4">
+        <div class="card-body">
 
-        <h3 class="fw-bold mb-2">
-            Welcome to your Shopping Room 👋
-        </h3>
+            <h3 class="fw-bold mb-3">
+                👋 Welcome to your Shopping Room
+            </h3>
 
-        <p class="mb-0">
-            Collaborate with your friends, manage shopping items together, and keep everything synchronized in real time.
-        </p>
+            <p class="mb-0">
+                Collaborate with your friends in real time, manage shopping items together,
+                monitor activities instantly and generate a professional shopping receipt.
+            </p>
+
+        </div>
 
     </div>
 
-</div>
+    <!-- Statistics -->
+    <div class="row g-3 mb-4">
+
+        <div class="col-md-4">
+
+            <div class="card stats-card shadow-sm">
+
+                <div class="card-body text-center">
+
+                    <i class="bi bi-people-fill display-5 text-primary"></i>
+
+                    <h6 class="text-uppercase text-secondary mt-3 mb-1">
+                        Members
+                    </h6>
+
+                    <h2 id="memberCount" class="fw-bold display-6">
+                        0
+                    </h2>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-4">
+
+            <div class="card stats-card shadow-sm">
+
+                <div class="card-body text-center">
+
+                    <i class="bi bi-cart-check-fill display-5 text-success"></i>
+
+                    <h6 class="text-uppercase text-secondary mt-3 mb-1">
+                        Items
+                    </h6>
+
+                    <h2 id="itemCount" class="fw-bold display-6">
+                        0
+                    </h2>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-4">
+
+            <div class="card stats-card shadow-sm">
+
+                <div class="card-body text-center">
+
+                    <i class="bi bi-currency-rupee display-5 text-warning"></i>
+
+                    <h6 class="text-uppercase text-secondary mt-3 mb-1">
+                        Grand Total
+                    </h6>
+
+                    <h2 id="dashboardTotal" class="fw-bold display-6">
+                        ₹0
+                    </h2>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
 
     <!-- Room Details -->
     <div class="card shadow-card border-0 mb-4">
@@ -166,97 +238,153 @@
             </div>
 
             <!-- Shopping Cart -->
-            <div class="card shadow-card border-0 mb-4">
 
-                <div class="card-body p-4">
+            <!-- Shopping Cart -->
+<div class="card shadow-card border-0 mb-4">
 
-                    <h4 class="fw-bold mb-4">
-                        <i class="bi bi-cart-fill text-success"></i>
-                        Shopping Cart
-                    </h4>
+    <div class="card-body p-4">
 
-                    <div class="table-responsive">
+        <div class="d-flex justify-content-between align-items-center flex-wrap mb-4">
 
-                        <table class="table table-hover align-middle">
+            <h4 class="fw-bold mb-0">
+                <i class="bi bi-cart-fill text-success me-2"></i>
+                Shopping Cart
+            </h4>
 
-                            <thead>
+            <span class="badge bg-primary fs-6 px-3 py-2">
+                Shared Cart
+            </span>
 
-                                <tr>
+        </div>
 
-                                    <th>Item</th>
-                                    <th>Qty</th>
-                                    <th>Price</th>
-                                    <th>Total</th>
-                                    <th></th>
+        <div class="table-responsive">
 
-                                </tr>
+            <table class="table table-hover align-middle">
 
-                            </thead>
+                <thead class="table-light">
 
-                            <tbody id="cartItems"></tbody>
+                    <tr>
 
-                        </table>
+                        <th>
+                            <i class="bi bi-bag-fill me-1"></i>
+                            Item
+                        </th>
 
-                    </div>
+                        <th>
+                            <i class="bi bi-box-seam me-1"></i>
+                            Qty
+                        </th>
 
-                    <h4 class="fw-bold text-end mt-4 text-success">
+                        <th>
+                            <i class="bi bi-currency-rupee me-1"></i>
+                            Price
+                        </th>
 
-                        Grand Total :
-                        <span id="grandTotal">₹0</span>
+                        <th>
+                            <i class="bi bi-calculator-fill me-1"></i>
+                            Total
+                        </th>
 
-                    </h4>
+                        <th class="text-center">
+                            Action
+                        </th>
 
-                    <div class="d-flex flex-wrap justify-content-end gap-3 mt-4">
+                    </tr>
 
-                        <button
-                            id="emptyCartBtn"
-                            class="btn btn-danger">
+                </thead>
 
-                            <i class="bi bi-trash3-fill"></i>
-                            Empty Cart
+                <tbody id="cartItems"></tbody>
 
-                        </button>
+            </table>
 
-                        <button
-                            id="receiptBtn"
-                            class="btn btn-success">
+        </div>
 
-                            <i class="bi bi-receipt"></i>
-                            View Receipt
+        <div class="d-flex justify-content-end mt-4">
 
-                        </button>
+            <div class="text-end">
 
-                    </div>
+                <small class="text-muted d-block">
+                    Grand Total
+                </small>
 
-                </div>
+                <h3 class="fw-bold text-success mb-0">
 
-            </div>
+                    ₹<span id="grandTotal">0</span>
 
-            <!-- Activity Log -->
-            <div class="card shadow-card border-0">
-
-                <div class="card-body p-4">
-
-                    <h4 class="fw-bold mb-4">
-
-                        <i class="bi bi-clock-history text-warning"></i>
-                        Activity Timeline
-
-                    </h4>
-
-                    <div
-                        id="activityLog"
-                        class="d-flex flex-column gap-2">
-
-                    </div>
-
-                </div>
+                </h3>
 
             </div>
 
         </div>
 
+        <div class="d-flex flex-wrap justify-content-end gap-3 mt-4">
+
+            <button
+                id="emptyCartBtn"
+                class="btn btn-outline-danger">
+
+                <i class="bi bi-trash3-fill me-2"></i>
+
+                Empty Cart
+
+            </button>
+
+            <button
+                id="receiptBtn"
+                class="btn btn-success">
+
+                <i class="bi bi-receipt me-2"></i>
+
+                View Receipt
+
+            </button>
+
+        </div>
+
     </div>
+
+</div>
+
+<!-- Activity Log -->
+
+
+
+
+
+<!-- Activity Log -->
+<div class="card shadow-card border-0">
+
+    <div class="card-body p-4">
+
+        <div class="d-flex justify-content-between align-items-center flex-wrap mb-4">
+
+            <h4 class="fw-bold mb-0">
+
+                <i class="bi bi-clock-history text-warning me-2"></i>
+
+                Recent Activity
+
+            </h4>
+
+            <span class="badge bg-warning text-dark px-3 py-2">
+
+                Live Updates
+
+            </span>
+
+        </div>
+
+        <div
+            id="activityLog"
+            class="d-flex flex-column gap-3">
+
+        </div>
+
+    </div>
+
+</div>
+
+</div>
 
 </div>
 
@@ -269,3 +397,4 @@
 </body>
 
 </html>
+
