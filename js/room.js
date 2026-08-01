@@ -87,7 +87,9 @@ function displayMembers() {
 
     updateDashboard();
 
-    // ==========================
+}
+
+// ==========================
 // Show Toast
 // ==========================
 function showToast(message, type = "primary") {
@@ -98,8 +100,6 @@ function showToast(message, type = "primary") {
     toastMessage.textContent = message;
 
     toast.show();
-
-}
 
 }
 
@@ -124,30 +124,6 @@ function updateDashboard() {
 
 }
 
-// ==========================
-// Bootstrap Toast
-// ==========================
-const toastElement = document.getElementById("liveToast");
-const toastMessage = document.getElementById("toastMessage");
-
-let toast = null;
-
-if (toastElement) {
-    toast = new bootstrap.Toast(toastElement);
-}
-
-function showToast(message, type = "primary") {
-
-    if (!toastElement || !toast) return;
-
-    toastElement.className =
-        `toast align-items-center text-bg-${type} border-0`;
-
-    toastMessage.textContent = message;
-
-    toast.show();
-
-}
 
 // ==========================
 // Display Shopping Cart
