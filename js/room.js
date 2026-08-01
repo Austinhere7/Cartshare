@@ -50,6 +50,10 @@ const emptyCartBtn = document.getElementById("emptyCartBtn");
 
 const memberCount = document.getElementById("memberCount");
 const itemCount = document.getElementById("itemCount");
+const toastElement = document.getElementById("liveToast");
+const toastMessage = document.getElementById("toastMessage");
+
+const toast = new bootstrap.Toast(toastElement);
 const dashboardTotal = document.getElementById("dashboardTotal");
 
 // ==========================
@@ -83,6 +87,20 @@ function displayMembers() {
 
     updateDashboard();
 
+    // ==========================
+// Show Toast
+// ==========================
+function showToast(message, type = "primary") {
+
+    toastElement.className =
+        `toast align-items-center text-bg-${type} border-0`;
+
+    toastMessage.textContent = message;
+
+    toast.show();
+
+}
+
 }
 
 // ==========================
@@ -103,6 +121,31 @@ function updateDashboard() {
     });
 
     dashboardTotal.textContent = `₹${total}`;
+
+}
+
+// ==========================
+// Bootstrap Toast
+// ==========================
+const toastElement = document.getElementById("liveToast");
+const toastMessage = document.getElementById("toastMessage");
+
+let toast = null;
+
+if (toastElement) {
+    toast = new bootstrap.Toast(toastElement);
+}
+
+function showToast(message, type = "primary") {
+
+    if (!toastElement || !toast) return;
+
+    toastElement.className =
+        `toast align-items-center text-bg-${type} border-0`;
+
+    toastMessage.textContent = message;
+
+    toast.show();
 
 }
 
@@ -246,6 +289,7 @@ function displayCart() {
 
             displayCart();
             displayActivity();
+            showToast("Item added successfully!", "success");
 
         });
 
@@ -297,7 +341,7 @@ addItemBtn.addEventListener("click", () => {
 
     if (name === "") {
 
-        alert("Please enter an item name.");
+        showToast("Please enter an item name.", "warning");
         itemName.focus();
         return;
 
@@ -305,15 +349,14 @@ addItemBtn.addEventListener("click", () => {
 
     if (quantity === "" || Number(quantity) <= 0) {
 
-        alert("Quantity must be greater than 0.");
-        itemQuantity.focus();
+        showToast("Quantity must be greater than 0.", "warning");
         return;
 
     }
 
     if (price === "" || Number(price) <= 0) {
 
-        alert("Price must be greater than 0.");
+        showToast("Price must be greater than 0.", "warning");
         itemPrice.focus();
         return;
 
@@ -392,7 +435,7 @@ emptyCartBtn.addEventListener("click", () => {
 
     if (room.cart.length === 0) {
 
-        alert("Cart is already empty.");
+        showToast("Cart is already empty.", "danger");
         return;
 
     }
@@ -405,16 +448,18 @@ emptyCartBtn.addEventListener("click", () => {
 
     room.cart = [];
 
-    room.activity.push(
-        `${currentUser} cleared the shopping cart`
-    );
+room.activity.push(
+    `${currentUser} cleared the shopping cart`
+);
 
-    localStorage.setItem(
-        roomCode,
-        JSON.stringify(room)
-    );
+localStorage.setItem(
+    roomCode,
+    JSON.stringify(room)
+);
 
-    displayCart();
-    displayActivity();
+displayCart();
+displayActivity();
+
+showToast("Shopping cart cleared successfully!", "success");
 
 });
