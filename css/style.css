@@ -454,6 +454,32 @@ button,
 
 }
 
+/* ===========================
+   FOOTER
+=========================== */
+
+.site-footer{
+
+    border-top:1px solid rgba(226,232,240,.8);
+
+    background:rgba(255,255,255,.7);
+
+}
+
+/* ===========================
+   ACCESSIBILITY
+=========================== */
+
+.nav-link:focus-visible,
+.btn:focus-visible,
+.form-control:focus-visible{
+
+    outline:none;
+
+    box-shadow:0 0 0 4px rgba(37,99,235,.16);
+
+}
+
 }
 
 
@@ -508,41 +534,5 @@ box-shadow:0 18px 35px rgba(0,0,0,.15);
 .stats-card h2{
 
 font-weight:700;
-
-}
-
-/* ==========================================
-Buttons
-========================================== */
-
-.btn{
-
-transition:.3s;
-
-}
-
-.btn:hover{
-
-transform:translateY(-2px);
-
-box-shadow:0 10px 18px rgba(0,0,0,.2);
-
-}
-
-/* ==========================================
-Inputs
-========================================== */
-
-.form-control{
-
-transition:.3s;
-
-}
-
-.form-control:focus{
-
-transform:scale(1.02);
-
-box-shadow:0 0 12px rgba(13,110,253,.25);
 
 }

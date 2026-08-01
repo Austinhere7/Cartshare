@@ -1,8 +1,8 @@
-// Get Room Code from URL
+// ==========================
+// Receipt Setup
+// ==========================
 const params = new URLSearchParams(window.location.search);
 const roomCode = params.get("roomCode");
-
-// Load Room
 const room = JSON.parse(localStorage.getItem(roomCode));
 
 if (!room) {
@@ -10,71 +10,124 @@ if (!room) {
     window.location.href = "../index.html";
 }
 
+room.cart = Array.isArray(room.cart) ? room.cart : [];
+room.users = Array.isArray(room.users) ? room.users : [];
+
+// ==========================
 // Select Elements
-const receiptRoom = document.getElementById("receiptRoom");
-const receiptHost = document.getElementById("receiptHost");
-const receiptItems = document.getElementById("receiptItems");
-const receiptMembers = document.getElementById("receiptMembers");
-const receiptTotal = document.getElementById("receiptTotal");
+// ==========================
+const elements = {
+    receiptRoom: document.getElementById("receiptRoom"),
+    receiptHost: document.getElementById("receiptHost"),
+    receiptItems: document.getElementById("receiptItems"),
+    receiptMembers: document.getElementById("receiptMembers"),
+    receiptTotal: document.getElementById("receiptTotal"),
+    receiptDate: document.getElementById("receiptDate"),
+    totalItems: document.getElementById("totalItems"),
+    totalMembers: document.getElementById("totalMembers"),
+    printReceiptBtn: document.getElementById("printReceiptBtn"),
+};
 
-const receiptDate = document.getElementById("receiptDate");
-const totalItems = document.getElementById("totalItems");
-const totalMembers = document.getElementById("totalMembers");
-
-// Display Room Details
-receiptRoom.textContent = room.roomCode;
-receiptHost.textContent = room.host;
-
-// Display Date
-if (receiptDate) {
-    receiptDate.textContent = new Date().toLocaleString();
+function formatCurrency(value) {
+    const normalized = Number(value) || 0;
+    return `₹${normalized.toLocaleString("en-IN", {
+        minimumFractionDigits: normalized % 1 === 0 ? 0 : 2,
+        maximumFractionDigits: 2,
+    })}`;
 }
 
-// Display Totals
-if (totalItems) {
-    totalItems.textContent = room.cart.length;
+function formatDateTime(value) {
+    const timestamp = Date.parse(value);
+
+    if (Number.isNaN(timestamp)) {
+        return new Date().toLocaleString([], {
+            dateStyle: "medium",
+            timeStyle: "short",
+        });
+    }
+
+    return new Date(timestamp).toLocaleString([], {
+        dateStyle: "medium",
+        timeStyle: "short",
+    });
 }
 
-if (totalMembers) {
-    totalMembers.textContent = room.users.length;
-}
+// ==========================
+// Header Details
+// ==========================
+elements.receiptRoom.textContent = room.roomCode;
+elements.receiptHost.textContent = room.host;
+elements.receiptDate.textContent = formatDateTime(new Date().toISOString());
+elements.totalItems.textContent = room.cart.length;
+elements.totalMembers.textContent = room.users.length;
 
-// Display Cart
+// ==========================
+// Receipt Items
+// ==========================
 let grandTotal = 0;
 
-receiptItems.innerHTML = "";
+elements.receiptItems.innerHTML = "";
+
+if (room.cart.length === 0) {
+    elements.receiptItems.innerHTML = `
+        <tr>
+            <td colspan="5">
+                <div class="receipt-empty-state">
+                    <i class="bi bi-cart-x"></i>
+                    <h5 class="mb-2">No items were found in this cart.</h5>
+                    <p class="text-secondary mb-0">The receipt will update once items are added to the shared room.</p>
+                </div>
+            </td>
+        </tr>
+    `;
+}
 
 room.cart.forEach((item) => {
-
-    const total = item.quantity * item.price;
-
+    const total = Number(item.quantity || 0) * Number(item.price || 0);
     grandTotal += total;
 
     const row = document.createElement("tr");
-
     row.innerHTML = `
-        <td>${item.name}</td>
-        <td>${item.quantity}</td>
-        <td>₹${item.price}</td>
-        <td>₹${total}</td>
+        <td data-label="Item Name">
+            <div class="receipt-item-name">${item.name}</div>
+            <small class="text-secondary">Added ${item.addedAt ? `on ${formatDateTime(item.addedAt)}` : "recently"}</small>
+        </td>
+        <td data-label="Added By">${item.addedBy || "Unknown"}</td>
+        <td data-label="Qty" class="text-center">${item.quantity}</td>
+        <td data-label="Price" class="text-end">${formatCurrency(item.price)}</td>
+        <td data-label="Total" class="text-end fw-semibold">${formatCurrency(total)}</td>
     `;
 
-    receiptItems.appendChild(row);
-
+    elements.receiptItems.appendChild(row);
 });
 
-// Grand Total
-receiptTotal.textContent = `₹${grandTotal}`;
+// ==========================
+// Totals
+// ==========================
+elements.receiptTotal.textContent = formatCurrency(grandTotal);
 
+// ==========================
 // Members
-receiptMembers.innerHTML = "";
+// ==========================
+elements.receiptMembers.innerHTML = "";
 
 room.users.forEach((user) => {
+    const chip = document.createElement("span");
+    chip.className = `member-chip ${user === room.host ? "member-chip-host" : ""}`;
+    chip.textContent = user;
+    elements.receiptMembers.appendChild(chip);
+});
 
-    const li = document.createElement("li");
+if (room.users.length === 0) {
+    const empty = document.createElement("div");
+    empty.className = "text-secondary";
+    empty.textContent = "No members available.";
+    elements.receiptMembers.appendChild(empty);
+}
 
-    li.textContent = user;
-
-    receiptMembers.appendChild(li);
-
+// ==========================
+// Print Action
+// ==========================
+elements.printReceiptBtn.addEventListener("click", () => {
+    window.print();
 });

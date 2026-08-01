@@ -2,132 +2,107 @@
 <html lang="en">
 
 <head>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>CartShare Receipt</title>
+    <title>CartShare | Receipt</title>
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
-
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css" integrity="sha384-CK2SzKma4jA5H/MXDUU7i1TqZlCFaD4T01vtyDFvPlD97JQyS+IsSh1nI2EFbpyk" crossorigin="anonymous">
+    <link rel="icon" type="image/svg+xml" href="../assets/images/icons/logo/favicon.svg">
     <link rel="stylesheet" href="../css/receipt.css">
-
 </head>
 
-<body>
+<body class="receipt-page">
 
-<div class="container py-5">
-
-    <div class="card shadow mx-auto" style="max-width:700px;">
-
-        <div class="card-body">
-
-            <h2 class="text-center mb-4">
-                🛒 CartShare Receipt
-            </h2>
-
-            <p>
-                <strong>Room Code:</strong>
-                <span id="receiptRoom"></span>
-            </p>
-
-            <p>
-                <strong>Host:</strong>
-                <span id="receiptHost"></span>
-            </p>
-
-            <p>
-    <strong>Date:</strong>
-    <span id="receiptDate"></span>
-</p>
-
-<p>
-    <strong>Total Items:</strong>
-    <span id="totalItems"></span>
-</p>
-
-<p>
-    <strong>Total Members:</strong>
-    <span id="totalMembers"></span>
-</p>
-
-            <hr>
-
-            <table class="table">
-
-                <thead>
-
-                    <tr>
-
-                        <th>Item</th>
-
-                        <th>Qty</th>
-
-                        <th>Price</th>
-
-                        <th>Total</th>
-
-                    </tr>
-
-                </thead>
-
-                <tbody id="receiptItems">
-
-                </tbody>
-
-            </table>
-
-            <h4 class="text-end">
-
-                Grand Total:
-                <span id="receiptTotal"></span>
-
-            </h4>
-
-            <hr>
-
-            <h5>
-
-                Members
-
-            </h5>
-
-            <ul id="receiptMembers">
-
-            </ul>
-
-            <div class="text-center mt-4">
-
-                <hr>
-
-<div class="text-center text-muted mt-4">
-
-    <small>
-
-        Thank you for using <strong>CartShare</strong> ❤️
-
-        <br>
-
-        This receipt was generated electronically.
-
-    </small>
-
-</div>
-
-                <button
-                    class="btn btn-success"
-                    onclick="window.print()">
-
-                    🖨 Print Receipt
-
-                </button>
-
-            </div>
-
+<div class="receipt-page-shell py-4 py-lg-5">
+    <div class="container">
+        <div class="receipt-toolbar d-flex flex-wrap justify-content-between align-items-center gap-3 mb-4 no-print">
+            <a href="room.html" class="btn btn-light action-btn">
+                <i class="bi bi-arrow-left me-2"></i>Back to Room
+            </a>
+            <button class="btn btn-primary action-btn" id="printReceiptBtn" type="button">
+                <i class="bi bi-printer me-2"></i>Print Receipt
+            </button>
         </div>
 
-    </div>
+        <section class="receipt-card card border-0 shadow-soft mx-auto">
+            <div class="card-body p-4 p-lg-5">
+                <header class="receipt-header">
+                    <div class="brand-block">
+                        <div class="receipt-logo">
+                            <i class="bi bi-cart3"></i>
+                        </div>
+                        <div>
+                            <p class="receipt-eyebrow mb-1">CartShare Invoice</p>
+                            <h1 class="h3 fw-bold mb-1">Shared Shopping Receipt</h1>
+                            <p class="text-secondary mb-0">Transparent itemized summary for every member.</p>
+                        </div>
+                    </div>
 
+                    <div class="receipt-meta-grid">
+                        <div class="meta-card">
+                            <span class="meta-label">Room</span>
+                            <strong id="receiptRoom" class="meta-value">-</strong>
+                        </div>
+                        <div class="meta-card">
+                            <span class="meta-label">Host</span>
+                            <strong id="receiptHost" class="meta-value">-</strong>
+                        </div>
+                        <div class="meta-card">
+                            <span class="meta-label">Date</span>
+                            <strong id="receiptDate" class="meta-value">-</strong>
+                        </div>
+                        <div class="meta-card">
+                            <span class="meta-label">Members</span>
+                            <strong id="totalMembers" class="meta-value">0</strong>
+                        </div>
+                        <div class="meta-card">
+                            <span class="meta-label">Items</span>
+                            <strong id="totalItems" class="meta-value">0</strong>
+                        </div>
+                    </div>
+                </header>
+
+                <div class="receipt-divider"></div>
+
+                <div class="table-responsive receipt-table-wrap">
+                    <table class="table receipt-table align-middle mb-0">
+                        <thead>
+                            <tr>
+                                <th>Item Name</th>
+                                <th>Added By</th>
+                                <th class="text-center">Qty</th>
+                                <th class="text-end">Price</th>
+                                <th class="text-end">Total</th>
+                            </tr>
+                        </thead>
+                        <tbody id="receiptItems"></tbody>
+                    </table>
+                </div>
+
+                <div class="receipt-summary d-flex flex-wrap justify-content-between align-items-center gap-3 mt-4">
+                    <div class="summary-copy">
+                        <span class="text-secondary d-block">Grand Total</span>
+                        <strong class="receipt-total" id="receiptTotal">₹0</strong>
+                    </div>
+                    <div class="summary-note text-secondary">
+                        Item totals are calculated from the latest shared room state.
+                    </div>
+                </div>
+
+                <div class="receipt-members mt-4">
+                    <h2 class="h6 text-uppercase text-secondary fw-bold mb-3">Members</h2>
+                    <div id="receiptMembers" class="member-chip-list"></div>
+                </div>
+
+                <footer class="receipt-footer mt-4 pt-4">
+                    <p class="mb-2 fw-semibold">CartShare</p>
+                    <p class="text-secondary mb-0">Thank you for using CartShare for collaborative shopping.</p>
+                </footer>
+            </div>
+        </section>
+    </div>
 </div>
 
 <script src="../js/receipt.js"></script>

@@ -12,10 +12,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
     <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
 
     <!-- Bootstrap Icons -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css" integrity="sha384-CK2SzKma4jA5H/MXDUU7i1TqZlCFaD4T01vtyDFvPlD97JQyS+IsSh1nI2EFbpyk" crossorigin="anonymous">
+
+    <link rel="icon" type="image/svg+xml" href="assets/images/icons/logo/favicon.svg">
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/style.css">
@@ -24,7 +26,7 @@
 <body>
 
 <header>
-    <nav class="navbar navbar-expand-lg bg-white shadow-sm py-3">
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm py-3">
         <div class="container">
 
             <!-- Logo -->
@@ -33,7 +35,7 @@
             </a>
 
             <!-- Mobile Toggle -->
-            <button class="navbar-toggler" type="button"
+            <button class="navbar-toggler" type="button" aria-label="Toggle navigation"
                 data-bs-toggle="collapse"
                 data-bs-target="#navbarNav">
 
@@ -122,7 +124,7 @@
 
             <div class="mb-3">
 
-                <label class="form-label">
+                <label class="form-label" for="displayName">
                     Display Name
                 </label>
 
@@ -136,7 +138,7 @@
 
             <div class="mb-4">
 
-                <label class="form-label">
+                <label class="form-label" for="roomCode">
                     Room Code
                 </label>
 
@@ -187,8 +189,15 @@
 
 </main>
 
+<footer class="site-footer py-4">
+    <div class="container d-flex flex-wrap justify-content-between align-items-center gap-2 small text-secondary">
+        <span>CartShare v1.2.0</span>
+        <span>Collaborative shopping, polished for modern teams.</span>
+    </div>
+</footer>
+
     <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 
     <!-- Custom JS -->
     <script src="js/app.js"></script>

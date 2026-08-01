@@ -11,422 +11,345 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
     <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
 
     <!-- Bootstrap Icons -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css" integrity="sha384-CK2SzKma4jA5H/MXDUU7i1TqZlCFaD4T01vtyDFvPlD97JQyS+IsSh1nI2EFbpyk" crossorigin="anonymous">
+
+    <link rel="icon" type="image/svg+xml" href="../assets/images/icons/logo/favicon.svg">
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="../css/room.css">
 </head>
 
-<body>
-
-<div class="container py-5">
-
-    <!-- Header -->
-    <div class="d-flex flex-wrap justify-content-between align-items-center mb-5">
-
-        <h2 class="fw-bold text-primary mb-3 mb-md-0">
-            <i class="bi bi-cart3"></i>
-            CartShare
-        </h2>
-
-        <span class="badge bg-success fs-6 px-3 py-2">
-            <i class="bi bi-wifi"></i>
-            Connected
-        </span>
-
-    </div>
-
-    <!-- Welcome Banner -->
-    <div class="card welcome-card border-0 shadow-lg mb-4">
-
-        <div class="card-body">
-
-            <h3 class="fw-bold mb-3">
-                👋 Welcome to your Shopping Room
-            </h3>
-
-            <p class="mb-0">
-                Collaborate with your friends in real time, manage shopping items together,
-                monitor activities instantly and generate a professional shopping receipt.
-            </p>
-
-        </div>
-
-    </div>
-
-    <!-- Statistics -->
-    <div class="row g-3 mb-4">
-
-        <div class="col-md-4">
-
-            <div class="card stats-card shadow-sm">
-
-                <div class="card-body text-center">
-
-                    <i class="bi bi-people-fill display-5 text-primary"></i>
-
-                    <h6 class="text-uppercase text-secondary mt-3 mb-1">
-                        Members
-                    </h6>
-
-                    <h2 id="memberCount" class="fw-bold display-6">
-                        0
-                    </h2>
-
-                </div>
-
-            </div>
-
-        </div>
-
-        <div class="col-md-4">
-
-            <div class="card stats-card shadow-sm">
-
-                <div class="card-body text-center">
-
-                    <i class="bi bi-cart-check-fill display-5 text-success"></i>
-
-                    <h6 class="text-uppercase text-secondary mt-3 mb-1">
-                        Items
-                    </h6>
-
-                    <h2 id="itemCount" class="fw-bold display-6">
-                        0
-                    </h2>
-
-                </div>
-
-            </div>
-
-        </div>
-
-        <div class="col-md-4">
-
-            <div class="card stats-card shadow-sm">
-
-                <div class="card-body text-center">
-
-                    <i class="bi bi-currency-rupee display-5 text-warning"></i>
-
-                    <h6 class="text-uppercase text-secondary mt-3 mb-1">
-                        Grand Total
-                    </h6>
-
-                    <h2 id="dashboardTotal" class="fw-bold display-6">
-                        ₹0
-                    </h2>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </div>
-
-    <!-- Room Details -->
-    <div class="card shadow-card border-0 mb-4">
-
-        <div class="card-body p-4">
-
-            <h4 class="fw-bold mb-3">
-                <i class="bi bi-house-door-fill text-primary"></i>
-                Room Details
-            </h4>
-
-            <h5 id="roomTitle" class="fw-bold mb-3"></h5>
-
-            <p id="roomCodeDisplay" class="mb-2 text-secondary"></p>
-
-            <p id="hostDisplay" class="mb-0 text-secondary"></p>
-
-        </div>
-
-    </div>
-
-    <div class="row g-4">
-
-        <!-- Members -->
-        <div class="col-lg-4">
-
-            <div class="card shadow-card border-0 h-100">
-
-                <div class="card-body p-4">
-
-                    <h4 class="fw-bold mb-3">
-                        <i class="bi bi-people-fill text-primary"></i>
-                        Members
-                    </h4>
-
-                    <ul
-                        id="memberList"
-                        class="list-group list-group-flush">
-                    </ul>
-
-                </div>
-
-            </div>
-
-        </div>
-
-        <!-- Right Column -->
-        <div class="col-lg-8">
-
-            <!-- Add Shopping Item -->
-            <div class="card shadow-card border-0 mb-4">
-
-                <div class="card-body p-4">
-
-                    <h4 class="fw-bold mb-4">
-                        <i class="bi bi-plus-circle-fill text-success"></i>
-                        Add Shopping Item
-                    </h4>
-
-                    <div class="row g-3">
-
-                        <div class="col-md-5">
-
-                            <input
-                                type="text"
-                                id="itemName"
-                                class="form-control"
-                                placeholder="Item Name">
-
-                        </div>
-
-                        <div class="col-md-3">
-
-                            <input
-                                type="number"
-                                id="itemQuantity"
-                                class="form-control"
-                                placeholder="Quantity">
-
-                        </div>
-
-                        <div class="col-md-2">
-
-                            <input
-                                type="number"
-                                id="itemPrice"
-                                class="form-control"
-                                placeholder="Price">
-
-                        </div>
-
-                        <div class="col-md-2">
-
-                            <button
-                                id="addItemBtn"
-                                class="btn btn-primary w-100">
-
-                                <i class="bi bi-plus-lg"></i>
-                                Add
-
-                            </button>
-
-                        </div>
-
+<body class="room-page">
+
+<div class="room-shell">
+    <header class="room-header">
+        <div class="container py-4 py-lg-5">
+            <div class="d-flex flex-wrap justify-content-between align-items-center gap-3">
+                <div>
+                    <div class="brand-mark mb-2">
+                        <i class="bi bi-cart3"></i>
                     </div>
-
+                    <h1 class="h3 fw-bold mb-1">CartShare</h1>
+                    <p class="text-secondary mb-0">Collaborative shopping dashboard</p>
                 </div>
 
+                <div class="d-flex align-items-center gap-2">
+                    <span id="connectionStatusBadge" class="status-pill status-pill-connected" aria-live="polite">
+                        <i class="bi bi-wifi"></i>
+                        Connected
+                    </span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="container pb-5">
+        <section class="hero-panel card border-0 shadow-soft mb-4">
+            <div class="card-body p-4 p-lg-5">
+                <div class="row align-items-center g-4">
+                    <div class="col-lg-8">
+                        <span class="eyebrow">Shared shopping room</span>
+                        <h2 class="display-6 fw-bold mt-2 mb-3">Manage your cart with a polished team dashboard.</h2>
+                        <p class="text-secondary mb-0">
+                            Track contributions, sort items, monitor live activity, and generate a professional receipt without leaving the room.
+                        </p>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="hero-metric-grid">
+                            <div class="metric-chip">
+                                <i class="bi bi-people-fill"></i>
+                                <span id="memberCount">0 members</span>
+                            </div>
+                            <div class="metric-chip">
+                                <i class="bi bi-cart-check-fill"></i>
+                                <span id="itemCount">0 items</span>
+                            </div>
+                            <div class="metric-chip">
+                                <i class="bi bi-currency-rupee"></i>
+                                <span id="dashboardTotal">₹0</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="row g-3 g-xl-4 mb-4">
+            <div class="col-md-6 col-xl-3">
+                <article class="stat-card stat-card-members h-100">
+                    <div class="stat-icon"><i class="bi bi-people-fill"></i></div>
+                    <div>
+                        <p class="stat-label mb-1">Members</p>
+                        <h3 id="memberCountCard" class="stat-value mb-0">0</h3>
+                    </div>
+                </article>
+            </div>
+            <div class="col-md-6 col-xl-3">
+                <article class="stat-card stat-card-items h-100">
+                    <div class="stat-icon"><i class="bi bi-bag-check-fill"></i></div>
+                    <div>
+                        <p class="stat-label mb-1">Items</p>
+                        <h3 id="itemCountCard" class="stat-value mb-0">0</h3>
+                    </div>
+                </article>
+            </div>
+            <div class="col-md-6 col-xl-3">
+                <article class="stat-card stat-card-total h-100">
+                    <div class="stat-icon"><i class="bi bi-cash-coin"></i></div>
+                    <div>
+                        <p class="stat-label mb-1">Grand Total</p>
+                        <h3 id="dashboardTotalCard" class="stat-value mb-0">₹0</h3>
+                    </div>
+                </article>
+            </div>
+            <div class="col-md-6 col-xl-3">
+                <article class="stat-card stat-card-status h-100">
+                    <div class="stat-icon"><i class="bi bi-cloud-check-fill"></i></div>
+                    <div>
+                        <p class="stat-label mb-1">Connected Status</p>
+                        <h3 id="connectionStatusText" class="stat-value mb-0">Connected</h3>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section class="row g-4 mb-4">
+            <div class="col-lg-4">
+                <article class="card panel-card h-100 border-0 shadow-soft">
+                    <div class="card-body p-4">
+                        <div class="d-flex justify-content-between align-items-start gap-3 mb-4">
+                            <div>
+                                <span class="eyebrow">Room details</span>
+                                <h3 class="h4 fw-bold mb-0 mt-2">Room Information</h3>
+                            </div>
+                            <button id="copyRoomCodeBtn" class="btn btn-sm btn-outline-primary copy-btn" type="button" title="Copy room code">
+                                <i class="bi bi-clipboard-plus me-1"></i>
+                                Copy Code
+                            </button>
+                        </div>
+
+                        <div class="info-stack">
+                            <div class="info-row">
+                                <span class="info-label">Room Name</span>
+                                <strong id="roomTitle" class="info-value">Shopping Room</strong>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">Room Code</span>
+                                <strong id="roomCodeDisplay" class="info-value">-</strong>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">Host</span>
+                                <strong id="hostDisplay" class="info-value">-</strong>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">Member Count</span>
+                                <strong id="roomMemberCount" class="info-value">0</strong>
+                            </div>
+                            <div class="info-row">
+                                <span class="info-label">Item Count</span>
+                                <strong id="roomItemCount" class="info-value">0</strong>
+                            </div>
+                            <div class="info-row align-items-center">
+                                <span class="info-label">Connection Status</span>
+                                <strong id="roomConnectionStatus" class="info-badge info-badge-connected">Connected</strong>
+                            </div>
+                        </div>
+                    </div>
+                </article>
             </div>
 
-            <!-- Shopping Cart -->
+            <div class="col-lg-8">
+                <article class="card panel-card border-0 shadow-soft h-100">
+                    <div class="card-body p-4">
+                        <div class="d-flex flex-wrap justify-content-between align-items-center gap-3 mb-4">
+                            <div>
+                                <span class="eyebrow">Team</span>
+                                <h3 class="h4 fw-bold mb-0 mt-2">Members</h3>
+                            </div>
+                            <span class="badge rounded-pill text-bg-light border text-secondary px-3 py-2">
+                                <i class="bi bi-people-fill me-1 text-primary"></i>
+                                Live list
+                            </span>
+                        </div>
 
-            <!-- Shopping Cart -->
-<div class="card shadow-card border-0 mb-4">
+                        <ul id="memberList" class="member-list list-unstyled mb-0"></ul>
+                    </div>
+                </article>
+            </div>
+        </section>
 
-    <div class="card-body p-4">
+        <section class="row g-4 mb-4">
+            <div class="col-lg-12">
+                <article class="card panel-card border-0 shadow-soft">
+                    <div class="card-body p-4 p-lg-5">
+                        <div class="d-flex flex-wrap justify-content-between align-items-center gap-3 mb-4">
+                            <div>
+                                <span class="eyebrow">Add items</span>
+                                <h3 class="h4 fw-bold mb-0 mt-2">Shopping Cart Controls</h3>
+                            </div>
+                            <div class="controls-hint text-secondary">Newest items stay on top</div>
+                        </div>
 
-        <div class="d-flex justify-content-between align-items-center flex-wrap mb-4">
+                        <div class="row g-3 align-items-end">
+                            <div class="col-12 col-md-4 col-xl-4">
+                                <label for="itemName" class="form-label">Item Name</label>
+                                <input type="text" id="itemName" class="form-control control-input" placeholder="e.g. Milk" aria-label="Item name">
+                            </div>
+                            <div class="col-6 col-md-2 col-xl-2">
+                                <label for="itemQuantity" class="form-label">Quantity</label>
+                                <input type="number" id="itemQuantity" class="form-control control-input" placeholder="1" min="1" aria-label="Quantity">
+                            </div>
+                            <div class="col-6 col-md-2 col-xl-2">
+                                <label for="itemPrice" class="form-label">Price</label>
+                                <input type="number" id="itemPrice" class="form-control control-input" placeholder="0" min="1" step="0.01" aria-label="Price">
+                            </div>
+                            <div class="col-12 col-md-4 col-xl-4 d-grid">
+                                <button id="addItemBtn" class="btn btn-primary action-btn action-btn-primary" type="button" title="Add item" aria-label="Add shopping item">
+                                    <span class="btn-label"><i class="bi bi-plus-lg me-2"></i>Add Item</span>
+                                    <span class="btn-loading d-none" aria-hidden="true">
+                                        <span class="spinner-border spinner-border-sm me-2"></span>
+                                        Adding...
+                                    </span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
 
-            <h4 class="fw-bold mb-0">
-                <i class="bi bi-cart-fill text-success me-2"></i>
-                Shopping Cart
-            </h4>
+        <section class="row g-4">
+            <div class="col-xl-8">
+                <article class="card panel-card border-0 shadow-soft">
+                    <div class="card-body p-4 p-lg-5">
+                        <div class="d-flex flex-wrap justify-content-between align-items-center gap-3 mb-4">
+                            <div>
+                                <span class="eyebrow">Cart</span>
+                                <h3 class="h4 fw-bold mb-0 mt-2">Shopping Cart</h3>
+                            </div>
+                            <div class="d-flex flex-wrap gap-2 align-items-center">
+                                <span class="badge rounded-pill text-bg-light border text-secondary px-3 py-2">
+                                    Shared cart
+                                </span>
+                                <button id="emptyCartBtn" class="btn btn-outline-danger action-btn" type="button" title="Empty cart">
+                                    <i class="bi bi-trash3-fill me-2"></i>Empty Cart
+                                </button>
+                                <button id="receiptBtn" class="btn btn-success action-btn" type="button" title="View receipt" aria-label="View receipt">
+                                    <i class="bi bi-receipt-cutoff me-2"></i>Receipt
+                                </button>
+                            </div>
+                        </div>
 
-            <span class="badge bg-primary fs-6 px-3 py-2">
-                Shared Cart
-            </span>
+                        <div class="row g-3 align-items-end mb-4">
+                            <div class="col-12 col-lg-7">
+                                <label for="itemSearch" class="form-label">Search Item</label>
+                                <div class="input-group search-group">
+                                    <span class="input-group-text"><i class="bi bi-search"></i></span>
+                                    <input id="itemSearch" type="search" class="form-control control-input" placeholder="Search by item or added by..." aria-label="Search shopping items">
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-5">
+                                <label for="sortItemsSelect" class="form-label">Sort By</label>
+                                <select id="sortItemsSelect" class="form-select control-input" aria-label="Sort shopping items">
+                                    <option value="newest" selected>Newest</option>
+                                    <option value="oldest">Oldest</option>
+                                    <option value="name">Name</option>
+                                    <option value="price">Price</option>
+                                    <option value="quantity">Quantity</option>
+                                </select>
+                            </div>
+                        </div>
 
-        </div>
+                        <div class="table-responsive cart-table-wrap">
+                            <table class="table cart-table align-middle mb-0">
+                                <thead>
+                                    <tr>
+                                        <th>Item Name</th>
+                                        <th>Added By</th>
+                                        <th>Added Time</th>
+                                        <th class="text-center">Quantity</th>
+                                        <th class="text-end">Price</th>
+                                        <th class="text-end">Total</th>
+                                        <th class="text-center">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="cartItems"></tbody>
+                            </table>
+                        </div>
 
-        <div class="table-responsive">
-
-            <table class="table table-hover align-middle">
-
-                <thead class="table-light">
-
-                    <tr>
-
-                        <th>
-                            <i class="bi bi-bag-fill me-1"></i>
-                            Item
-                        </th>
-
-                        <th>
-                            <i class="bi bi-box-seam me-1"></i>
-                            Qty
-                        </th>
-
-                        <th>
-                            <i class="bi bi-currency-rupee me-1"></i>
-                            Price
-                        </th>
-
-                        <th>
-                            <i class="bi bi-calculator-fill me-1"></i>
-                            Total
-                        </th>
-
-                        <th class="text-center">
-                            Action
-                        </th>
-
-                    </tr>
-
-                </thead>
-
-                <tbody id="cartItems"></tbody>
-
-            </table>
-
-        </div>
-
-        <div class="d-flex justify-content-end mt-4">
-
-            <div class="text-end">
-
-                <small class="text-muted d-block">
-                    Grand Total
-                </small>
-
-                <h3 class="fw-bold text-success mb-0">
-
-                    ₹<span id="grandTotal">0</span>
-
-                </h3>
-
+                        <div class="d-flex flex-wrap justify-content-between align-items-center gap-3 mt-4">
+                            <div class="cart-summary">
+                                <span class="text-secondary d-block">Grand Total</span>
+                                <strong class="grand-total">₹<span id="grandTotal">0</span></strong>
+                            </div>
+                            <div class="text-secondary small">Items are shown in the selected sort order with the newest entry first by default.</div>
+                        </div>
+                    </div>
+                </article>
             </div>
 
+            <div class="col-xl-4">
+                <article class="card panel-card border-0 shadow-soft h-100">
+                    <div class="card-body p-4 p-lg-5 d-flex flex-column">
+                        <div class="d-flex justify-content-between align-items-center gap-3 mb-4">
+                            <div>
+                                <span class="eyebrow">Timeline</span>
+                                <h3 class="h4 fw-bold mb-0 mt-2">Activity</h3>
+                            </div>
+                            <span class="badge rounded-pill text-bg-light border text-secondary px-3 py-2">
+                                <i class="bi bi-lightning-charge-fill me-1 text-warning"></i>Live
+                            </span>
+                        </div>
+
+                        <div id="activityLog" class="activity-feed flex-grow-1"></div>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <footer class="room-footer text-center text-secondary small mt-4 py-3">
+            <span>CartShare v1.2.0</span>
+            <span class="mx-2">•</span>
+            <span>Built for collaborative shopping</span>
+        </footer>
+    </main>
+</div>
+
+<div class="modal fade" id="emptyCartModal" tabindex="-1" aria-labelledby="emptyCartModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content border-0 shadow-soft">
+            <div class="modal-header modal-header-danger">
+                <h5 class="modal-title" id="emptyCartModalLabel">
+                    <i class="bi bi-trash3-fill me-2"></i>
+                    Empty Shopping Cart
+                </h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p class="mb-2">Are you sure you want to empty the cart?</p>
+                <small class="text-secondary">This action cannot be undone.</small>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-light" data-bs-dismiss="modal" type="button">Cancel</button>
+                <button id="confirmEmptyCartBtn" class="btn btn-danger" type="button">Empty Cart</button>
+            </div>
         </div>
-
-        <div class="d-flex flex-wrap justify-content-end gap-3 mt-4">
-
-            <button
-                id="emptyCartBtn"
-                class="btn btn-outline-danger">
-
-                <i class="bi bi-trash3-fill me-2"></i>
-
-                Empty Cart
-
-            </button>
-
-            <button
-                id="receiptBtn"
-                class="btn btn-success">
-
-                <i class="bi bi-receipt me-2"></i>
-
-                View Receipt
-
-            </button>
-
-        </div>
-
     </div>
-
 </div>
 
-<!-- Activity Log -->
-
-
-
-
-
-<!-- Activity Log -->
-<div class="card shadow-card border-0">
-
-    <div class="card-body p-4">
-
-        <div class="d-flex justify-content-between align-items-center flex-wrap mb-4">
-
-            <h4 class="fw-bold mb-0">
-
-                <i class="bi bi-clock-history text-warning me-2"></i>
-
-                Recent Activity
-
-            </h4>
-
-            <span class="badge bg-warning text-dark px-3 py-2">
-
-                Live Updates
-
-            </span>
-
-        </div>
-
-        <div
-            id="activityLog"
-            class="d-flex flex-column gap-3">
-
-        </div>
-
-    </div>
-
-</div>
-
-</div>
-
-</div>
-
-<!-- Bootstrap JS -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
-
-<!-- Custom JS -->
-<!-- Bootstrap Toast -->
-
-<div
-    class="toast-container position-fixed bottom-0 end-0 p-4">
-
-    <div
-        id="liveToast"
-        class="toast align-items-center text-bg-primary border-0"
-        role="alert">
-
+<div class="toast-container position-fixed bottom-0 end-0 p-3 p-md-4">
+    <output id="liveToast" class="toast align-items-center text-bg-primary border-0" aria-live="polite" aria-atomic="true">
         <div class="d-flex">
-
-            <div
-                class="toast-body"
-                id="toastMessage">
-
-                Notification
-
-            </div>
-
-            <button
-                type="button"
-                class="btn-close btn-close-white me-2 m-auto"
-                data-bs-dismiss="toast">
-            </button>
-
+            <div class="toast-body" id="toastMessage">Notification</div>
+            <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
         </div>
-
-    </div>
-
+    </output>
 </div>
 
-<!-- Bootstrap JS -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
-
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 <script src="../js/room.js"></script>
 
 </body>
