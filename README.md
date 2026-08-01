@@ -114,21 +114,6 @@ CartShare follows a simple client-side architecture:
 
 Data is stored in the browser using LocalStorage, which keeps the application lightweight and easy to run without a backend.
 
-## Future Scope
-
-- Export receipts as PDF
-- Add item edit and quantity adjustment controls
-- Support currency selection
-- Add room history and archived receipts
-- Introduce optional backend sync for multi-device persistence
-- Add invite links and room expiration rules
-- Provide dark mode and theme presets
-
-## Contributors
-
-- Austinhere7
-- GitHub Copilot
-
 ## License
 
 This project is licensed under the MIT License.
