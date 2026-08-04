@@ -14,6 +14,10 @@ CartShare is designed for roommates, teams, and small groups that need a shared 
 
 The application keeps the original feature set intact while focusing on a professional dashboard experience, better readability, responsive layouts, and stronger accessibility.
 
+## Live Demo
+
+Open the deployed app here: https://cartshare-five.vercel.app/
+
 ## Features
 
 - Room creation and room joining flow
