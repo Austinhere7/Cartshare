@@ -39,7 +39,11 @@ Add your project screenshots here after capturing the current UI.
 
 ### Room Dashboard
 
-![Room dashboard screenshot](assets/screenshots/room-dashboard.png)
+![Room dashboard screenshot 1](assets/screenshots/room-dashboard-1.png)
+
+![Room dashboard screenshot 2](assets/screenshots/room-dashboard-2.png)
+
+![Room dashboard screenshot 3](assets/screenshots/room-dashboard-3.png)
 
 ### Receipt View
 
