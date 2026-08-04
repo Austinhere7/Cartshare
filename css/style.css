@@ -391,7 +391,180 @@ button,
     transition:.3s;
 
 }
+/* ===========================
+   LANDING PAGE SECTIONS
+=========================== */
 
+.landing-section{
+    padding:90px 0;
+}
+
+.section-light{
+    background:var(--card-bg);
+}
+
+.section-muted{
+    background:#f8fafc;
+}
+
+.section-heading{
+    max-width:720px;
+    margin:0 auto 48px;
+}
+
+.section-eyebrow{
+    display:inline-block;
+    margin-bottom:10px;
+    color:var(--primary);
+    font-weight:700;
+    font-size:.9rem;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+}
+
+.section-heading h2,
+.section-copy h2{
+    font-size:2.2rem;
+    font-weight:700;
+    margin-bottom:14px;
+    color:#0f172a;
+}
+
+.section-heading p,
+.section-copy{
+    color:#64748b;
+    font-size:1.02rem;
+    line-height:1.8;
+}
+
+.process-card,
+.feature-card,
+.audience-card,
+.benefit-card{
+    background:var(--card-bg);
+    border:1px solid var(--border);
+    border-radius:18px;
+    box-shadow:var(--shadow);
+    transition:.3s ease;
+}
+
+.process-card:hover,
+.feature-card:hover,
+.audience-card:hover{
+    transform:translateY(-6px);
+    box-shadow:var(--shadow-hover);
+}
+
+.process-card{
+    padding:28px 24px;
+    position:relative;
+}
+
+.step-badge{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    width:42px;
+    height:42px;
+    margin-bottom:16px;
+    border-radius:50%;
+    background:rgba(37,99,235,.08);
+    color:var(--primary);
+    font-weight:700;
+    font-size:.95rem;
+}
+
+.process-icon,
+.feature-icon{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    width:48px;
+    height:48px;
+    margin-bottom:16px;
+    border-radius:14px;
+    background:rgba(37,99,235,.1);
+    color:var(--primary);
+    font-size:1.3rem;
+}
+
+.process-card h3,
+.feature-card h3,
+.audience-card h3{
+    font-size:1.15rem;
+    font-weight:700;
+    margin-bottom:10px;
+    color:#0f172a;
+}
+
+.process-card p,
+.feature-card p,
+.audience-card p{
+    color:#64748b;
+    margin-bottom:0;
+    line-height:1.7;
+}
+
+.feature-card,
+.audience-card{
+    padding:28px 24px;
+}
+
+.benefit-card{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:16px 18px;
+    min-height:78px;
+}
+
+.benefit-card i{
+    color:var(--success);
+    font-size:1.1rem;
+}
+
+.benefit-card span{
+    font-weight:600;
+    color:#334155;
+}
+
+.site-footer{
+    background:#0f172a;
+    color:#f8fafc;
+    border-top:1px solid rgba(255,255,255,.08);
+}
+
+.site-footer .navbar-brand{
+    color:#ffffff !important;
+}
+
+.footer-title{
+    font-size:1rem;
+    font-weight:700;
+    color:#ffffff;
+    margin-bottom:14px;
+}
+
+.footer-links li,
+.footer-links a{
+    color:#cbd5e1;
+    margin-bottom:8px;
+    text-decoration:none;
+}
+
+.footer-links a:hover{
+    color:var(--primary);
+}
+
+.footer-bottom{
+    border-top:1px solid rgba(255,255,255,.1);
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:space-between;
+    gap:12px;
+    color:#94a3b8;
+    font-size:.95rem;
+}
 /* ===========================
    RESPONSIVE
 =========================== */

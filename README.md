@@ -118,6 +118,12 @@ CartShare follows a simple client-side architecture:
 
 Data is stored in the browser using LocalStorage, which keeps the application lightweight and easy to run without a backend.
 
+## Acknowledgements
+
+Developed as part of the Website Design & Development Internship Project.
+
+Special thanks to the internship mentors and reviewers.
+
 ## License
 
 This project is licensed under the MIT License.
